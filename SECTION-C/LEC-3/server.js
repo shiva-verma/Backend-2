@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-app.get('/product/:id/:price', (req, res)=>{
+app.get('/product/:id([0-9])/:price', (req, res)=>{
     const {id, price} = req.params;
     console.log(id)
     console.log(price)

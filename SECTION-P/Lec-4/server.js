@@ -12,7 +12,25 @@ const app = express();
 //     res.send('hiii')
 // })
 
+app.set('view engine', 'ejs');
+app.set('views', './views')
+
 app.use(productRoutes);
+
+let arr = [
+    {
+        name:'abcde',
+        age:24
+    },
+    {
+        name:'efgh',
+        age:35
+    }
+]
+
+app.use('/home', (req, res)=>{
+    res.render('home.ejs', {arr})
+})
 
 
 app.listen(9000, ()=>{

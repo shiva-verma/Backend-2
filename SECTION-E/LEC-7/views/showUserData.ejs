@@ -11,6 +11,7 @@
         <h1><%= user.email %></h1>
         <h1><%= user.password %></h1>
         <h1><%= user.contact %></h1>
+        <button type="submit"><a href="/u1/user/update/<%= user.id%>">Edit</a></button>
         <form action="/u1/user/delete/<%= user.id%>?_method=DELETE" method="POST">
             <button type="submit">Delete</button>
         </form>

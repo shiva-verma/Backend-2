@@ -1,10 +1,12 @@
 const express = require('express');
 const userRoutes = require('./routes/userRoute.js');
 const methodOverride = require('method-override');
+const path = require('path');
 const app = express();
 
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({extended:true}))
+app.use(express.static(path.join(__dirname, 'static')));
 
 app.set('view engine', 'ejs')
 app.set('views', './views');

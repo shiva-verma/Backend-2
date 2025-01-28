@@ -3,7 +3,6 @@ const Users = require('../database/data.js')
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 
-
 router.get('/user/all', (req, res)=>{
     res.render('showUserData', {Users})
 })
@@ -37,6 +36,31 @@ router.delete('/user/delete/:id',(req, res)=>{
         Users.splice(idx, 1);
 
         res.redirect('/u1/user/all');
+})
+
+
+router.get('/user/update/:id', (req, res)=>{
+    const {id} = req.params;
+
+    const user = Users.find((u)=>u.id == id);
+    
+    console.log(user);
+
+
+    res.render('updateForm.ejs', {user});
+})
+
+router.put('/user/update/:id',(req, res)=>{
+    const {id} = req.params;
+    const {email, password, contact} = req.body;
+
+    const oldUser = Users.find((u)=>u.id == id);
+
+    oldUser.email = email;
+    oldUser.password = password;
+    oldUser.contact = contact;
+
+    res.redirect('/u1/user/all')
 })
 
 

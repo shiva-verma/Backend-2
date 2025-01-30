@@ -1,8 +1,11 @@
 const express = require('express');
 const userRoutes = require('./routes/userRoutes.js')
 const methodOverride = require('method-override');
+const dbConnect = require('./database/data.js');
 const path = require('path');
 const app = express();
+
+dbConnect();
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, "static")));

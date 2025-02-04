@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> user details</h1>
+    <% for(let user of Users){ %>
+        <h1><%= user.email %></h1>
+        <h1><%= user.password %></h1>
+        <h1><%= user.contact %></h1>
+        <button type="submit"><a href="/u1/user/update/<%= user.id%>">Edit</a></button>
+        <form action="/u1/user/delete/<%= user.id%>?_method=DELETE" method="POST">
+            <button type="submit">Delete</button>
+        </form>
+
+        
+    <% } %>
+</body>
+</html>

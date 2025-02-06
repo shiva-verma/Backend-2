@@ -1,64 +1,47 @@
 const express = require('express');
-const Users = require('../database/data.js')
+const User = require('../model/userSchema.js')
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 
-router.get('/user/all', (req, res)=>{
-    res.render('showUserData', {Users})
+router.get('/user/all', async(req, res)=>{
+    try {
+        const user = await User.find({});
+        console.log(user);
+        res.render('showUserData', {User:user})
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 router.get('/user/new', (req, res)=>{
         res.render('newUser');
 })
 
-router.post('/user', (req, res)=>{
-    const {email, password, contact} = req.body
-
-    const newUser = {
-        id:uuidv4(),
-        email:email,
-        password:password,
-        contact:contact
-    }
-
-    Users.push(newUser);
-    console.log(Users)
+router.post('/user', async(req, res)=>{
+    await User.create(req.body);
     res.redirect('/u1/user/all')
 })
 
-router.delete('/user/delete/:id',(req, res)=>{
+router.delete('/user/delete/:id', async(req, res)=>{
         const {id} = req.params;
-
-        const user = Users.find((u) => u.id == id);
-
-        const idx = Users.indexOf(user);
-
-        Users.splice(idx, 1);
+        await User.findByIdAndDelete(id);
 
         res.redirect('/u1/user/all');
 })
 
 
-router.get('/user/update/:id', (req, res)=>{
+router.get('/user/update/:id', async(req, res)=>{
     const {id} = req.params;
-
-    const user = Users.find((u)=>u.id == id);
-    
-    console.log(user);
-
+    const user = await User.findById(id);
 
     res.render('updateForm.ejs', {user});
 })
 
-router.put('/user/update/:id',(req, res)=>{
+router.put('/user/update/:id', async(req, res)=>{
     const {id} = req.params;
     const {email, password, contact} = req.body;
 
-    const oldUser = Users.find((u)=>u.id == id);
-
-    oldUser.email = email;
-    oldUser.password = password;
-    oldUser.contact = contact;
+    await User.findByIdAndUpdate(id, req.body);
 
     res.redirect('/u1/user/all')
 })

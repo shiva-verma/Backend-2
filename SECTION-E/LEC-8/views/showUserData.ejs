@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1> user details</h1>
-    <% for(let user of Users){ %>
+    <% for(let user of User){ %>
         <h1><%= user.email %></h1>
         <h1><%= user.password %></h1>
         <h1><%= user.contact %></h1>
@@ -15,8 +15,6 @@
         <form action="/u1/user/delete/<%= user.id%>?_method=DELETE" method="POST">
             <button type="submit">Delete</button>
         </form>
-
-        
     <% } %>
 </body>
 </html>

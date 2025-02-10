@@ -1,17 +1,21 @@
 const express = require('express');
-const ejsmate = require('ejs-mate');
-// const userRoutes = require('./routes/userRoutes.js')
-const dbConnect = require('./database/db.js')
+const userRoutes = require('./routes/userRoutes.js')
+const methodOverride = require('method-override');
+const dbConnect = require('./database/data.js');
+const path = require('path');
 const app = express();
 
-
 dbConnect();
-app.engine('ejs', ejsmate)
+
+app.use(express.urlencoded({extended:true}));
+app.use(express.static(path.join(__dirname, "static")));
+
+app.use(methodOverride( "_method"));
 app.set('view engine', 'ejs');
 app.set('views', './views')
 
-// app.use(userRoutes)
+app.use('/u1', userRoutes);
 
-app.listen(5000, ()=>{
-    console.log('server is running at port 5000')
+app.listen(4000, ()=>{
+    console.log('server is running at port 4000')
 })

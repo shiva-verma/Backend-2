@@ -28,7 +28,7 @@ router.post('/product/info', async(req, res)=>{
 router.get('/product/edit/:id', async(req, res)=>{
     try {
         const {id} = req.params;
-        const product = await Product.find({_id:id});
+        const product = await Product.findById(id);
         res.render('product/editProduct.ejs', {products:product})
     } catch (error) {
         console.log(error)

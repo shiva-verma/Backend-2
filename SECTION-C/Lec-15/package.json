@@ -1,0 +1,24 @@
+{
+  "name": "lec-10",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "ejs": "^3.1.10",
+    "ejs-mate": "^4.0.0",
+    "express": "^4.21.2",
+    "method-override": "^3.0.0",
+    "mongodb": "^6.13.0",
+    "mongoose": "^8.9.6",
+    "nodemon": "^3.1.9",
+    "path": "^0.12.7"
+  }
+}

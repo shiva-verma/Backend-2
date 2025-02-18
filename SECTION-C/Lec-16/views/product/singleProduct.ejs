@@ -1,0 +1,21 @@
+<% layout('layout/boilerplate') -%>
+<h1><%= product.product_name %></h1>
+<div class="d-flex">
+  <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="https://images.gizbot.com/600x400/ph-big/img_og/vivo-y18t-combines-affordable-price-with-decent-camera-battery-life1731414887.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><%= product.product_name  %></h5>
+        <p class="card-text"><%= product.product_desc %></p>
+        <form action="/p1/product/<%= product._id%>?_method=DELETE" method="POST">
+          <button class="btn btn-danger" type="submit">Delete</button>
+        </form>
+        <a href="/p1/product/edit/<%= product._id%>" class="btn btn-success">Update</a>
+        <a href="" class="btn btn-warning">Buy</a>
+      </div>
+    </div>
+    <form action="">
+        <input type="number">
+        <label for=""></label>
+        <input type="text">
+    </form>
+</div>

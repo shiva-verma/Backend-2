@@ -1,0 +1,81 @@
+<% layout('layout/boilerplate') -%>
+<div class="container">
+    <div class=" text-center mt-5 ">
+
+        <h1 >Add Product</h1>
+            
+        
+    </div>
+
+
+<div class="row ">
+  <div class="col-lg-7 mx-auto">
+    <div class="card mt-2 mx-auto p-4 bg-light">
+        <div class="card-body bg-light">
+   
+        <div class = "container">
+        <form action="/p1/product/info" id="contact-form" role="form" method="POST">
+
+        
+
+        <div class="controls">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="form_name">Product name </label>
+                        <input id="form_name" type="text" class="form-control" placeholder="Please enter product name *" required="required" name="product_name">
+                        
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="form_lastname">Category</label>
+                        <input id="form_lastname" type="text" name="category" class="form-control" placeholder="Please enter category" required="required">
+                                                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="form_email">Price</label>
+                        <input id="form_email" type="number" name="price" class="form-control" placeholder="Please enter product price" required="required" >
+                        
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="form_need">Product image</label>
+                        <input  id="form_need" type="text" class="form-control" placeholder="Enter image url" name="img" required="required">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="form_message">Description</label>
+                        <textarea id="form_message" name="desc" class="form-control" placeholder="Write your description here." rows="4" required="required"></textarea
+                            >
+                        </div>
+
+                    </div>
+      
+            </div>
+
+
+            <button type="submit">Add product</button>
+    </div>
+     </form>
+    </div>
+        </div>
+
+
+</div>
+    <!-- /.8 -->
+
+</div>
+<!-- /.row-->
+
+</div>
+</div>

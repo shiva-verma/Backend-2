@@ -1,0 +1,18 @@
+<% layout('layout/boilerplate.ejs') -%>
+<h1>Update Product</h1>
+<form action="/product/update/data" method="POST">
+    <div class="mb-3">
+      <label for="productname" class="form-label">Product name</label>
+      <input type="text" class="form-control" id="productname" >
+    </div>
+    <div class="mb-3">
+      <label for="productdescription" class="form-label">Product description</label>
+      <input type="password" class="form-control" id="productdescription">
+    </div>
+    <div class="mb-3">
+        <label for="productprice" class="form-label">Product price</label>
+        <input type="password" class="form-control" id="productprice">
+      </div>
+    
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>

@@ -1,0 +1,43 @@
+<% layout('layout/boilerplate') -%>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf6zoRR_FPG7f2knECoYTgOuETejMYPg71vg&s" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"><%= product.productName  %></h5>
+              <p class="card-text"><%= product.category %></p>
+              <a href="#" class="btn btn-primary">Buy</a>
+              <a href="#" class="btn btn-success">Add to cart</a>
+              <form action="/p1/product/<%= product._id %>?_method=DELETE" method="POST">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </div>
+          </div>
+    </div>
+    <div class="col-lg-6">
+        <h1>Reviews</h1>
+        <form action="/p1/product/data/<%= product._id %>" method="POST">
+            <div class="form-group">
+                <label for="customRange3" class="form-label">Rating</label>
+                <input type="range" class="form-range" min="0" max="5" step="1" id="customRange3" name="rating">
+            </div>
+            <div class="form-group">
+              <label for="comment">comment</label>
+              <textarea type="text" class="form-control" id="comment"  placeholder="Enter review" name="comment"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <% for(let review of product.reviews){ %>
+            <div class="card w-75">
+              <div class="card-body">
+                <h5 class="card-title"><%= review.rating %></h5>
+                <p class="card-text"><%= review.comment %></p>
+                <form action="/p1/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+          <% } %>
+    </div>
+
+</div>

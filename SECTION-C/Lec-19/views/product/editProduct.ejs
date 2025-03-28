@@ -1,0 +1,60 @@
+<% layout('layout/boilerplate') -%>
+<form class="form-horizontal" action="/p1/product/<%= products._id%>?_method=PUT" method="POST">
+    <fieldset>
+
+    <legend>UPDATE PRODUCTS</legend>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_id">PRODUCT ID</label>  
+      <div class="col-md-4">
+      <input id="product_id" name="product_id" placeholder="PRODUCT ID" class="form-control input-md" required="" type="text" value="<%= products.product_id %>">
+      </div>
+    </div>
+    
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_name">PRODUCT NAME</label>  
+      <div class="col-md-4">
+      <input id="product_name" name="product_name" placeholder="PRODUCT NAME" class="form-control input-md" required="" type="text" value= "<%= products.product_name %>">
+        
+      </div>
+    </div>
+    
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_name_fr">PRODUCT DESCRIPTION</label>  
+      <div class="col-md-4">
+      <input id="product_name_fr" name="product_desc" placeholder="PRODUCT DESCRIPTION FR" class="form-control input-md" required="" type="text" value="<%= products.product_desc %>">
+        
+      </div>
+    </div>
+
+     <!-- Text input-->
+     <div class="form-group">
+        <label class="col-md-4 control-label" for="product_price">PRODUCT PRICE</label>  
+        <div class="col-md-4">
+        <input id="product_price" name="product_price" placeholder="PRODUCT PRICE" class="form-control input-md" required="" type="number" value="<%= products.product_price %>">
+          
+        </div>
+      </div>
+    
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="product_categorie">PRODUCT CATEGORY</label>
+      <div class="col-md-4">
+        <select id="product_categorie" name="product_ctg" class="form-control" value="<%= products.product_ctg %>">
+            <option>Men</option>
+            <option>Women</option>
+            <option>Kids</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-4">
+            <button type="submit">Update</button>
+        </div>
+      </div>
+    </fieldset>
+    </form>
+    

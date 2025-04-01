@@ -15,6 +15,9 @@ dbConnect();
 app.engine('ejs', ejsmate);
 app.set('view engine', 'ejs');
 app.set('views', './views');
+app.use(methodOverride('_method'))
+app.use(express.static(path.join(__dirname, 'static')))
+app.use(express.urlencoded({extended:true}));
 
 app.use(session({
     secret: 'keyboard cat',
@@ -26,23 +29,21 @@ app.use(session({
         maxAge: 10000,
      }
   }))
+  
+app.use((req, res, next)=>{
+      res.locals.currUser = req.user;
+      next();
+})
 
-app.use(methodOverride('_method'))
-app.use(express.static(path.join(__dirname, 'static')))
-app.use(express.urlencoded({extended:true}));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new LocalStrategy(User.authenticate()));
-
+passport.use(passport.authenticate('session'));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use((req, res, next)=>{
-    res.locals.currUser = req.user;
-    next();
-})
 
 app.use('/u1',userRoutes);
 app.use('/p1',productRoutes);

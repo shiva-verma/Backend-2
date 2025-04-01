@@ -1,10 +1,12 @@
 const express = require('express');
+const Product = require('../models/productSchema');
 const router = express.Router();
 
 //GET, POST, PUT , DELETE
 //To show all the product  - GET
-router.get('/products', (req, res)=>{
-
+router.get('/products', async(req, res)=>{
+    const products = await Product.find({})
+    res.render('products/home.ejs', {products})
 })
 
 //to show addProduct page - GET
@@ -13,8 +15,9 @@ router.get('/product/add', (req, res)=>{
 })
 
 //to create a product from data - POST
-router.post('/product/info', (req, res)=>{
-    
+router.post('/product/info', async(req, res)=>{
+    await Product.create(req.body);
+    res.send('data saved in database');
 })
 
 //to show updateProduct page - GET

@@ -17,7 +17,7 @@ router.get('/product/single/:id', async (req, res) => {
 
     const product = await Product.findById(id).populate('reviews');
     // console.log(product);
-
+    console.log(req.user);
     res.render('product/singleProduct.ejs', { product });
 })
 

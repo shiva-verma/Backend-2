@@ -24,9 +24,13 @@ app.use(session({
     saveUninitialized: true,
     cookie: { 
         httpOnly: true,
-        maxAge : 10000
+        expiresIn : 60 * 60 * 1000
      }
 }))
+
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 passport.use(new LocalStrategy(User.authenticate()));
 
@@ -36,12 +40,14 @@ passport.use(passport.authenticate('session'));
 passport.serializeUser(User.serializeUser()); //encryption 
 passport.deserializeUser(User.deserializeUser()); //decryption
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use((req, res, next)=>{
+    res.locals.currUser = req.user
+    next();
+})
 
 app.use('/u1', userRoutes);
 app.use('/p1', productRoutes);
 
-app.listen(7000, ()=>{
-    console.log('server is running at port 7000')
+app.listen(7900, ()=>{
+    console.log('server is running at port 7900')
 })

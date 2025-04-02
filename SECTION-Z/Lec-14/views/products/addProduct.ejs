@@ -1,0 +1,22 @@
+<% layout('layout/boilerplate.ejs') -%>
+<h1>Create Product</h1>
+<form action="/product/info" method="POST">
+    <div class="mb-3">
+      <label for="productname" class="form-label">Product name</label>
+      <input type="text" class="form-control" id="productname" name="productname">
+    </div>
+    <div class="mb-3">
+      <label for="productdescription" class="form-label">Product description</label>
+      <input type="text" class="form-control" id="productdescription" name="productdescription">
+    </div>
+    <div class="mb-3">
+        <label for="productprice" class="form-label">Product price</label>
+        <input type="text" class="form-control" id="productprice" name="productprice">
+    </div>
+    <div class="mb-3">
+        <label for="productImg" class="form-label">Product Image</label>
+        <input type="text" class="form-control" id="productImg" name="productImg">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>

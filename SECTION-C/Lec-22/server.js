@@ -25,7 +25,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { 
         httpOnly:true,
-        secure: true,
+      
         maxAge: 10000,
      }
   }))
@@ -40,14 +40,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new LocalStrategy(User.authenticate()));
-passport.use(passport.authenticate('session'));
+// passport.use(passport.authenticate('session'));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
 
 
 app.use('/u1',userRoutes);
 app.use('/p1',productRoutes);
 
-app.listen(9000, ()=>{
-    console.log('server is running at port 9000')
+app.listen(5500, ()=>{
+    console.log('server is running at port 5500')
 })

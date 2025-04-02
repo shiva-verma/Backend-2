@@ -23,6 +23,7 @@ router.post('/register', async (req, res) => {
     const user = new User({ username, email, userType });
     // await User.create({username, email, password});
     const newUser = await User.register(user, password);
+    res.redirect('/u1/login')
 
   } catch (error) {
     console.log(error);
@@ -30,7 +31,7 @@ router.post('/register', async (req, res) => {
   }
 })
 
-router.post('/login',
+router.post('/signIn',
   passport.authenticate('local', { failureRedirect: '/u1/login' }),
   (req, res) => {
     res.redirect('/p1/products');

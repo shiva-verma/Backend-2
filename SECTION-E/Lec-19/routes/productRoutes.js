@@ -1,12 +1,14 @@
 const express = require('express');
 const { showAllProducts, showSingleProduct, addProductPage, createProduct, editProductPage, deleteProduct, editProduct, createReview, deleteReview } = require('../controllers/productController');
+const { isLoggedIn, isSeller } = require('../middleware/authentication');
+
 const router = express.Router();
 
 //to show all products - GET
 router.get('/products', showAllProducts)
 
 //show single product - GET
-router.get('/product/singleProduct/:id', showSingleProduct)
+router.get('/product/singleProduct/:id', isLoggedIn ,showSingleProduct)
 
 //show addProduct form page - GET 
 router.get('/product/add', addProductPage)

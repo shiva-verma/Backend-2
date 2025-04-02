@@ -48,6 +48,6 @@ app.use((req, res, next)=>{
 app.use('/u1', userRoutes);
 app.use('/p1', productRoutes);
 
-app.listen(7900, ()=>{
-    console.log('server is running at port 7900')
+app.listen(3300, ()=>{
+    console.log('server is running at port 3300')
 })

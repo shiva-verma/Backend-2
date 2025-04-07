@@ -132,4 +132,14 @@ router.post('/review/data/:pid', validateObjectId, async(req, res) => {
     }
 });
 
+//DELETE REVIEW
+router.delete('/review/:rid/:pid', validateObjectId, async(req, res)=>{
+     const {rid} = req.params;
+     const {pid} = req.params;
+
+     await Review.findByIdAndDelete(rid);
+
+     res.redirect(`/product/single/${pid}`)
+})
+
 module.exports = router;

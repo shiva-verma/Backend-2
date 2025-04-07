@@ -15,6 +15,6 @@ app.use(methodOverride('_method'));
 app.use(express.urlencoded({extended:true}));
 app.use(productRoutes);
 
-app.listen(3600, ()=>{
-    console.log('server is running at port 3600')
+app.listen(2600, ()=>{
+    console.log('server is running at port 2600')
 })

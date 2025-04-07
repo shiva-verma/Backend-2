@@ -1,0 +1,12 @@
+<% layout('layout/boilerplate') -%>
+
+<% for(let product of products){ %>
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf6zoRR_FPG7f2knECoYTgOuETejMYPg71vg&s" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><%= product.productName  %></h5>
+      <p class="card-text"><%= product.category %></p>
+      <a href="/p1/showSingle/<%= product._id %>" class="btn btn-danger">Show</a>
+    </div>
+  </div>
+  <% } %>

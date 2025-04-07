@@ -1,0 +1,46 @@
+<% layout('layout/boilerplate.ejs') -%>
+<h2><%= product.productName  %></h2>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="<%= product.productImg  %>" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><%= product.productName  %></h5>
+        <p class="card-text"><%=product.productdesc%></p>
+        <p class="card-text"><%=product.productprice%></p>
+        <a href="#" class="btn btn-success">Buy Now</a>
+        <a href="/product/edit/<%= product._id%>" class="btn btn-primary">Edit</a>
+        <form action="/product/delete/<%= product._id%>?_method=DELETE" method="post">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <h2>Reviews</h2>
+    <form action="/review/data/<%= product._id%>" method="POST">
+      <div class="form-group">
+        <label for="rating" class="form-label">Rating</label>
+        <input type="range" class="form-range" min="0" max="5" step="0.5" id="rating" name="rating">   
+      </div>
+      <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea type="text" class="form-control" id="comment" placeholder="Comment" name="comment"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <% for(review of product.reviews){ %>
+    <div class="card" style="width: 30rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= review.rating  %></h5>
+        <p class="card-text"><%= review.comment  %></p>
+        <form action="/review/<%= review._id%>/<%= product._id%>?_method=DELETE" method="post">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+  

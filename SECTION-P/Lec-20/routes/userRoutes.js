@@ -32,11 +32,20 @@ router.post(
     '/signIn',
     passport.authenticate('local', {
         failureRedirect: '/u1/login', // Redirect to login on failure
-        failureFlash: true           // Enable flash messages if using connect-flash
     }),
     (req, res) => {
         res.redirect('/p1/products');
     }
 );
+
+router.post('/logout', (req, res, next) => {
+    req.logout((err)=> {
+      if (err) {
+         return next(err); 
+      }
+      console.log('user logout successfully')
+      res.redirect('/u1/login');
+    });
+  });
 
 module.exports = router;

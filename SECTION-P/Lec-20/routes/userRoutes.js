@@ -3,26 +3,40 @@ const User = require('../model/userSchema');
 const passport = require('passport');
 const router = express.Router();
 
-router.get('/login', (req, res)=>{
-    res.render('users/login.ejs')
-})
-
-router.get('/register', (req, res)=>{
-    res.render('users/signup.ejs')
-})
-
-router.post('/userdata', async(req, res)=>{
-    const {username, email, password, usertype} = req.body;
-
-    const user = new User({username, email, usertype});
-
-    await User.register(user, password);
-
-    res.redirect('/u1/login')
-})
-
-router.post('/login', passport.authenticate('local', { failureRedirect: '/u1/register' }), (req, res)=>{
-      res.redirect('/p1/products');
+// Render login page
+router.get('/login', (req, res) => {
+    res.render('users/login.ejs');
 });
+
+// Render registration page
+router.get('/register', (req, res) => {
+    res.render('users/signup.ejs');
+});
+
+// Handle registration
+router.post('/userdata', async (req, res) => {
+    const { username, email, password, usertype } = req.body;
+
+    try {
+        const user = new User({ username, email, usertype });
+        await User.register(user, password);
+        res.redirect('/u1/login');
+    } catch (err) {
+        console.log(err);
+        res.redirect('/u1/register');
+    }
+});
+
+// Handle login
+router.post(
+    '/signIn',
+    passport.authenticate('local', {
+        failureRedirect: '/u1/login', // Redirect to login on failure
+        failureFlash: true           // Enable flash messages if using connect-flash
+    }),
+    (req, res) => {
+        res.redirect('/p1/products');
+    }
+);
 
 module.exports = router;

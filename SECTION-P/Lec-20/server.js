@@ -14,14 +14,10 @@ const app = express();
 dbConnect();
 
 app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-         maxAge : 60*60*1000, 
-         httpOnly:true
-    }
-  }))
+  secret: 'yourSecret',
+  resave: false,
+  saveUninitialized: false
+}));
 
 app.engine('ejs', ejsmate)
 app.set('view engine', 'ejs');
@@ -29,17 +25,17 @@ app.set('views', './views')
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({extended:true}));
 
+
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
 
-// use static serialize and deserialize of model for passport session support
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use('/u1', userRoutes);
 app.use('/p1', productRoutes);
 
-app.listen(7000, ()=>{
-    console.log('server is running at port 7000')
+app.listen(7300, ()=>{
+    console.log('server is running at port 7300')
 })

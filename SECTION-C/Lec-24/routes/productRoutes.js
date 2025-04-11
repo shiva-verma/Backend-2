@@ -33,6 +33,7 @@ router.get('/product/add',  isLoggedIn, isSeller, (req, res) => {
 router.post('/product/info',async (req, res) => {
     try {
         await Product.create(req.body);
+        req.flash('success', "Product cfeated successfuly")
         res.redirect('/p1/products');
     } catch (error) {
         console.log(error)
@@ -116,6 +117,7 @@ router.post('/cartdata/:pid', async(req, res)=>{
     await user.save();
 
     res.redirect("/p1/cart");
+    
 })
 
 router.get("/cart", async(req, res)=>{

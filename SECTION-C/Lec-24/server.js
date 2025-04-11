@@ -9,6 +9,7 @@ const path = require('path');
 const User = require('./model/userSchema.js');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const flash = require('connect-flash');
 const app = express();
 
 dbConnect();
@@ -29,7 +30,7 @@ app.use(session({
      }
   }))
   
-  
+app.use(flash());
   
   app.use(passport.initialize());
   app.use(passport.session());
@@ -38,9 +39,13 @@ app.use(session({
   // passport.use(passport.authenticate('session'));
   passport.serializeUser(User.serializeUser());
   passport.deserializeUser(User.deserializeUser());
+
   
   app.use((req, res, next)=>{
         res.locals.currUser = req.user;
+        res.locals.success = req.flash("success");
+        res.locals.info = req.flash("info");
+        res.locals.error = req.flash("error");
         next();
   })
 
@@ -51,3 +56,4 @@ app.use('/p1',productRoutes);
 app.listen(5500, ()=>{
     console.log('server is running at port 5500')
 })
+

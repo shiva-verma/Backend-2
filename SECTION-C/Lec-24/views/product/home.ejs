@@ -6,6 +6,11 @@
       <div class="card-body">
         <h5 class="card-title"><%= product.product_name  %></h5>
         <p class="card-text"><%= product.product_desc %></p>
+        <% if(currUser?.whislist){ %>
+          <i class="fa-solid fa-heart"></i>
+        <% }else{ %>
+          <i class="fa-thin fa-heart"></i>
+        <% } %>
         <a href="/p1/product/single/<%= product._id %>" class="btn btn-success">Show</a>
       </div>
     </div>

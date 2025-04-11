@@ -1,0 +1,25 @@
+<% layout('layout/boilerplate.ejs') -%>
+<h1>Update Product</h1>
+<form action="/product/update/data/<%= product._id%>?_method=PUT" method="POST">
+    <div class="mb-3">
+      <label for="productname" class="form-label">Product name</label>
+      <input type="text" class="form-control" id="productname" value="<%= product.productName  %>" name="productName">
+    </div>
+    <div class="mb-3">
+      <label for="productdesc" class="form-label">Product description</label>
+      <input type="text" class="form-control" id="productdesc" value="<%= product.productdesc %>" name="productdesc">
+    </div>
+    <div class="mb-3">
+        <label for="produccategory" class="form-label">Product category</label>
+        <input type="text" class="form-control" id="produccategory" value="<%= product.productcate  %>" name="productcate">
+      </div>
+    <div class="mb-3">
+        <label for="productprice" class="form-label">Product Price</label>
+        <input type="text" class="form-control" id="productprice" value="<%= product.productprice %>" name="productprice">
+    </div>
+    <div class="mb-3">
+        <label for="productImg" class="form-label">Product Image url</label>
+        <input type="text" class="form-control" id="productImg" value="<%= product.productImg%>" name="productImg">
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>

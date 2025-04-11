@@ -1,0 +1,27 @@
+<% layout('layout/boilerplate') -%>
+<div>
+  <h1>User Signup</h1>
+<form action="/u1/register/" method="POST">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" name="username">
+    </div>
+    <div class="mb-3">
+      <label for="Email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="Email" name="email">
+    </div>
+    <div class="mb-3">
+      <label for="Password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="Password" name="password">
+    </div>
+    <div class="mb-3">
+      <h6>Usertype</h6>
+      <input class="form-check-input" type="radio" name="usertype" id="buyer" value="buyer">
+      <label class="form-check-label" for="buyer">Buyer</label>
+      <input class="form-check-input" type="radio" name="usertype" id="seller" value="seller">
+      <label class="form-check-label" for="seller">Seller</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+</div>
